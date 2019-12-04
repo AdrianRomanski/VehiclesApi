@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/../JDND-master/JDND-master/projects/P02-VehiclesAPI/pricing-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../JDND-master/JDND-master/projects/P02-VehiclesAPI/vehicles-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/boogle-maps" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/models-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pricing-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vehicles-api" charset="UTF-8" />
+  </component>
+</project>

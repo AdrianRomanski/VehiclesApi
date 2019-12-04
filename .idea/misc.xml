@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/../JDND-master/JDND-master/projects/P02-VehiclesAPI/boogle-maps/pom.xml" />
+        <option value="$PROJECT_DIR$/../JDND-master/JDND-master/projects/P02-VehiclesAPI/vehicles-api/pom.xml" />
+        <option value="$PROJECT_DIR$/../Java/Udacity/Java Developer/WebServicesAndApis/VehicleApi/eureka-server/pom.xml" />
+        <option value="$PROJECT_DIR$/../JDND-master/JDND-master/projects/P02-VehiclesAPI/pricing-service/pom.xml" />
+        <option value="$PROJECT_DIR$/models-service/pom.xml" />
+        <option value="$PROJECT_DIR$/boogle-maps/pom.xml" />
+        <option value="$PROJECT_DIR$/pricing-service/pom.xml" />
+        <option value="$PROJECT_DIR$/vehicles-api/pom.xml" />
+        <option value="$PROJECT_DIR$/eureka-server/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11.0.4" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
