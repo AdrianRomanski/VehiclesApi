@@ -1,4 +1,4 @@
-package com.udacity.vehicles.domain.customcar;
+package com.udacity.vehicles.domain.enums;
 
 public enum Currency {
     US_DOLLAR,

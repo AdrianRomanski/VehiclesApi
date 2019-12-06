@@ -1,6 +1,6 @@
 package com.udacity.vehicles.domain.car;
 
-import com.udacity.vehicles.domain.Condition;
+import com.udacity.vehicles.domain.enums.Condition;
 
 import java.time.LocalDateTime;
 import javax.persistence.Embedded;
@@ -12,9 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
-import com.udacity.vehicles.domain.customcar.CustomCarDetails;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -36,7 +34,7 @@ public class Car {
     @LastModifiedDate
     private LocalDateTime modifiedAt;
 
-    @NotNull
+
     @Enumerated(EnumType.STRING)
     private Condition condition;
 

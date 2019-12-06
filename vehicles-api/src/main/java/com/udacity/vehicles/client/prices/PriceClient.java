@@ -19,16 +19,9 @@ public class PriceClient {
         this.client = pricing;
     }
 
-    // In a real-world application we'll want to add some resilience
-    // to this method with retries/CB/failover capabilities
-    // We may also want to cache the results so we don't need to
-    // do a request every time
+
     /**
-     * Gets a vehicle price from the pricing client, given vehicle ID.
-     * @param vehicleId ID number of the vehicle for which to get the price
-     * @return Currency and price of the requested vehicle,
-     *   error message that the vehicle ID is invalid, or note that the
-     *   service is down.
+     * Gets a vehicle price from the pricing client, given vehicle ID..
      */
     public Price getPrice(Long vehicleId) {
         try {

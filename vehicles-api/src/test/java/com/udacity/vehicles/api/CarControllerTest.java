@@ -1,7 +1,6 @@
 package com.udacity.vehicles.api;
 
 import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -10,14 +9,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.udacity.vehicles.client.maps.MapsClient;
-import com.udacity.vehicles.client.prices.PriceClient;
-import com.udacity.vehicles.domain.Condition;
 import com.udacity.vehicles.domain.car.Details;
 import com.udacity.vehicles.domain.car.Location;
 import com.udacity.vehicles.domain.car.Car;
-import com.udacity.vehicles.domain.customcar.CustomCarDetails;
-import com.udacity.vehicles.domain.manufacturer.Manufacturer;
 import com.udacity.vehicles.service.CarService;
 import java.net.URI;
 import java.util.Collections;
@@ -52,11 +46,6 @@ public class CarControllerTest {
     @MockBean
     private CarService carService;
 
-    @MockBean
-    private PriceClient priceClient;
-
-    @MockBean
-    private MapsClient mapsClient;
 
     /**
      * Creates pre-requisites for testing, such as an example car.
@@ -91,12 +80,11 @@ public class CarControllerTest {
      */
     @Test
     public void listCars() throws Exception {
-        /**
-         * TODO: Add a test to check that the `get` method works by calling
-         *   the whole list of vehicles. This should utilize the car from `getCar()`
-         *   below (the vehicle will be the first in the list).
-         */
 
+        mvc.perform(get("/cars").header("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.*.carList", hasSize(1)))
+                .andExpect(jsonPath("$.*.carList[0].id").value(1));
     }
 
     /**
@@ -105,10 +93,12 @@ public class CarControllerTest {
      */
     @Test
     public void findCar() throws Exception {
-        /**
-         * TODO: Add a test to check that the `get` method works by calling
-         *   a vehicle by ID. This should utilize the car from `getCar()` below.
-         */
+
+        Car car = getCar();
+
+        mvc.perform(get("/cars/" + car.getId()).header("Content-Type",MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1));
     }
 
     /**
@@ -117,11 +107,11 @@ public class CarControllerTest {
      */
     @Test
     public void deleteCar() throws Exception {
-        /**
-         * TODO: Add a test to check whether a vehicle is appropriately deleted
-         *   when the `delete` method is called from the Car Controller. This
-         *   should utilize the car from `getCar()` below.
-         */
+
+        Car car = getCar();
+
+        mvc.perform(delete("/cars/" + car.getId()).header("Content-Type",
+                MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(status().isNoContent());
     }
 
     /**
@@ -130,21 +120,9 @@ public class CarControllerTest {
      */
     private Car getCar() {
         Car car = new Car();
-        car.setLocation(new Location(40.730610, -73.935242));
-        Details details = new Details();
-//        Manufacturer manufacturer = new Manufacturer(101, "Chevrolet");
-//        details.setManufacturer(manufacturer);
-        details.setModel("Impala");
-//        details.setMileage(32280);
-//        details.setExternalColor("white");
-//        details.setBody("sedan");
-//        details.setEngine("3.6L V6");
-//        details.setFuelType("Gasoline");
-//        details.setModelYear(2018);
-//        details.setProductionYear(2018);
-//        details.setNumberOfDoors(4);
-        car.setDetails(details);
-        car.setCondition(Condition.USED);
+        car.setId(1L);
+        car.setLocation(new Location());
+        car.setDetails(new Details());
         return car;
     }
 }

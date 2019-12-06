@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
+/**
+ * Maps the CustomCarController to the CustomCar class using HATEOAS
+ */
 @Component
 public class CustomCarResourceAssembler implements ResourceAssembler<CustomCar, Resource<CustomCar>> {
 

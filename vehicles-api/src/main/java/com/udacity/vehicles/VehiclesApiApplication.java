@@ -1,10 +1,8 @@
 package com.udacity.vehicles;
 
-import com.udacity.vehicles.domain.manufacturer.Manufacturer;
-import com.udacity.vehicles.domain.manufacturer.ManufacturerRepository;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -24,22 +22,6 @@ public class VehiclesApiApplication {
         SpringApplication.run(VehiclesApiApplication.class, args);
     }
 
-    /**
-     * Initializes the car manufacturers available to the Vehicle API.
-     * @param repository where the manufacturer information persists.
-     * @return the car manufacturers to add to the related repository
-     */
-    @Bean
-    CommandLineRunner initDatabase(ManufacturerRepository repository) {
-        return args -> {
-            repository.save(new Manufacturer(100, "Audi"));
-            repository.save(new Manufacturer(101, "Chevrolet"));
-            repository.save(new Manufacturer(102, "Ford"));
-            repository.save(new Manufacturer(103, "BMW"));
-            repository.save(new Manufacturer(104, "Dodge"));
-            repository.save(new Manufacturer(105, "Peugot"));
-        };
-    }
 
     @Bean
     public ModelMapper modelMapper() {
@@ -65,7 +47,11 @@ public class VehiclesApiApplication {
     public WebClient webClientPricing(@Value("${pricing.endpoint}") String endpoint) {
         return WebClient.create(endpoint);
     }
-
+    /**
+     * Web Client for the models API
+     * @param endpoint where to communicate for the models API
+     * @return created models endpoint
+     */
     @Bean(name="models")
     public WebClient webClientModels(@Value("${models.endpoint}") String endpoint) {
         return WebClient.create(endpoint);

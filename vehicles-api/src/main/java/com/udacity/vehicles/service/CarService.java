@@ -4,6 +4,7 @@ package com.udacity.vehicles.service;
 import com.udacity.vehicles.client.maps.MapsClient;
 import com.udacity.vehicles.client.models.ModelClient;
 import com.udacity.vehicles.client.prices.PriceClient;
+import com.udacity.vehicles.domain.enums.Condition;
 import com.udacity.vehicles.domain.car.Location;
 import com.udacity.vehicles.domain.car.Car;
 import com.udacity.vehicles.domain.car.CarRepository;
@@ -66,6 +67,7 @@ public class CarService {
         car.setCurrency(currency);
         Location location = mapsClient.getAddress(car.getLocation());
         car.setLocation(location);
+        car.setCondition(Condition.NEW);
 
         details.setColor(modelClient.getModel(id).getColor());
         details.setModel(modelClient.getModel(id).getName());

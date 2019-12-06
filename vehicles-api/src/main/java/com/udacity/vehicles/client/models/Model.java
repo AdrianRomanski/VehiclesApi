@@ -2,7 +2,6 @@ package com.udacity.vehicles.client.models;
 
 public class Model {
 
-
     private String manufacturer;
     private String name;
     private String color;

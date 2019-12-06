@@ -1,4 +1,4 @@
-package com.udacity.vehicles.domain;
+package com.udacity.vehicles.domain.enums;
 
 /**
  * Available values for condition of a given car.

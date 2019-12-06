@@ -1,9 +1,8 @@
 package com.udacity.vehicles.client.models;
 
-import com.udacity.vehicles.client.prices.Price;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -29,7 +28,6 @@ public class ModelClient {
                     .retrieve().bodyToMono(Model.class).block();
 
             assert model != null;
-//            return String.format("%s %s %s", model.getName(), model.getManufacturer(), model.getColor());
             return model;
         } catch (Exception e) {
             log.error("Unexpected error retrieving price for vehicle {}", vehicleId, e);

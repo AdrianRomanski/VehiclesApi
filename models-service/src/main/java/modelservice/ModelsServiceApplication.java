@@ -19,8 +19,6 @@ import java.util.stream.LongStream;
 public class ModelsServiceApplication {
 
 
-
-
     public static void main(String[] args) {
         SpringApplication.run(ModelsServiceApplication.class, args);
     }
@@ -52,8 +50,6 @@ public class ModelsServiceApplication {
         model.setVehicleId(id);
         return model;
     }
-
-
 
     private int getRandomInteger(int size) {
         final int min = 1;

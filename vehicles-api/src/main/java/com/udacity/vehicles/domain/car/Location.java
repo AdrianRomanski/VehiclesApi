@@ -6,18 +6,14 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Stores information about a given location.
- * Latitude and longitude must be provided, while other
+ * Latitude and longitude will be set to 0,0 if not provided
  * location information must be gathered each time from
  * the maps API.
  */
 @Embeddable
 public class Location {
 
-    @NotNull
-    private Double lat;
 
-    @NotNull
-    private Double lon;
 
     @Transient
     private String address;
@@ -30,6 +26,10 @@ public class Location {
 
     @Transient
     private String zip;
+
+    private Double lat;
+
+    private Double lon;
 
     public Location() {
     }

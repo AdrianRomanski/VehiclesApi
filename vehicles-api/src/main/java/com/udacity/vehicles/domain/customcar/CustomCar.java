@@ -1,6 +1,7 @@
 package com.udacity.vehicles.domain.customcar;
 
-import com.udacity.vehicles.domain.Condition;
+import com.udacity.vehicles.domain.enums.Condition;
+import com.udacity.vehicles.domain.enums.Currency;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
