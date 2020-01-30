@@ -4,20 +4,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Locations {
-    BROCKTON_AVENUE_777(1,"Brockton Avenue", 777, "Abington", "MA", 2351);
+    BROCKTON_AVENUE_777(1,"777 Brockton Avenue", "Abington", "MA", "2351"),
+    MEMORIAL_DRIVE_30(2, "30 Memorial Drive", "Avon", "MA", "2322"),
+    HARTFROD_AVENUE_250(3, "250 Hartford Avenue", "Bellingham" , "MA", "2019"),
+    OAK_STREET_900(4, "700 Oak Street", "Brockton", "MA", "2301"),
+    PARKHURST_RD_66_4(5, "66-4 Parkhurst Rd", "Chelmsford", "MA", "1824");
 
     private final int id;
     private final String address;
-    private final int houseNo;
     private final  String city;
     private final  String state;
-    private final  int zipCode;
+    private final  String zipCode;
 
-    Locations(int number, String address, int houseNo,
-              String city, String state, int zipCode) {
+    Locations(int number, String address,
+              String city, String state, String zipCode) {
         this.id = number;
         this.address = address;
-        this.houseNo = houseNo;
         this.city = city;
         this.state = state;
         this.zipCode = zipCode;
@@ -39,10 +41,6 @@ public enum Locations {
         return address;
     }
 
-    public int getHouseNo() {
-        return houseNo;
-    }
-
     public String getCity() {
         return city;
     }
@@ -51,7 +49,7 @@ public enum Locations {
         return state;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 

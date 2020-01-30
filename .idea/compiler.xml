@@ -15,7 +15,6 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="boogle-maps-service.bak" target="11" />
-      <module name="locations-service" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
