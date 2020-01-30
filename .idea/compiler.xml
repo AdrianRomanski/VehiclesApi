@@ -7,14 +7,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="eureka-server" />
-        <module name="vehicles-api" />
+        <module name="models-service" />
         <module name="pricing-service" />
         <module name="locations-service" />
-        <module name="models-service" />
+        <module name="vehicles-api" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="boogle-maps-service.bak" target="11" />
+      <module name="locations-service" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
