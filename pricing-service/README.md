@@ -5,7 +5,7 @@ would store and retrieve the price of a vehicle given a vehicle id as
 input.
 - REST WebService integrated with Spring Boot
 
-## Features
+# Features
 ### Genereting 20 random prices in 10 most popular currencies
 ### First the price is comming in US Dollar then is exchanged to other currencies
 - US Dollar, exchangeRate 1.0
