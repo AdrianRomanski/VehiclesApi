@@ -2,10 +2,10 @@
 
 ## Instructions
 Check each component to see its details and instructions.
-All of the microservices are working independent
 
 - [Vehicles API](vehicles-api/README.md)
 - [Pricing Service](pricing-service/README.md)
+- [Models Service](models-service/README.md)
 - [Boogle Maps](boogle-maps/README.md)
 
 
