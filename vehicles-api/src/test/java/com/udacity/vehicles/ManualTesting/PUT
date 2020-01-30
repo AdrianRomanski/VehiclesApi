@@ -1,0 +1,22 @@
+{
+	"condition": "USED",
+	"price": "20",
+	"currency": "Swiss Franc",
+    "details": {
+        "manufacturer": "Porsche",
+        "model": "911",
+        "color": "Red",
+        "modelYear": 2019,
+        "body": "hatchback",
+        "numberOfDoors": 3,
+        "engine": "5.0 472hp"
+    },
+    "location": {
+        "address": "Buldog Street",
+        "city": "Sausage Town",
+        "state": "Meat",
+        "zip": "2244",
+        "lat": 1.5723,
+        "lon": 2.4212
+    }
+}

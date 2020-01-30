@@ -35,7 +35,5 @@ public enum Currency {
         return exchangeRate;
     }
 
-    public static Map<Integer, Currency> getCurrencies() {
-        return Map.copyOf(currencies);
-    }
+    public static Map<Integer, Currency> getCurrencies() { return currencies; }
 }

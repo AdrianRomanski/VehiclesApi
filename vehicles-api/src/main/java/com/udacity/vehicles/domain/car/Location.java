@@ -14,7 +14,6 @@ import javax.validation.constraints.NotNull;
 public class Location {
 
 
-
     @Transient
     private String address;
 
@@ -38,6 +37,10 @@ public class Location {
         this.lat = lat;
         this.lon = lon;
     }
+
+    public void setLat(Double lat) { this.lat = lat; }
+
+    public void setLon(Double lon) { this.lon = lon; }
 
     public Double getLat() {
         return lat;

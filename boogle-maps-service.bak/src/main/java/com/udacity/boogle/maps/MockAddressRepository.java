@@ -1,5 +1,7 @@
 package com.udacity.boogle.maps;
 
+import com.udacity.boogle.maps.model.Address;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
@@ -8,13 +10,13 @@ import java.util.stream.Collectors;
 /**
  * Implements a mock repository for generating a random address.
  */
-class MockAddressRepository {
+public class MockAddressRepository {
 
     /**
      * Gets a random address from the list.
      * @return A new, random address split into street, city, state and zip
      */
-    static Address getRandom() {
+  public static Address getRandom() {
 
         Random generator = new Random();
         int randomIndex = generator.nextInt(ADDRESSES.length);
@@ -35,7 +37,7 @@ class MockAddressRepository {
         String state = list.pollLast();
         String city = String.join(" ", list);
 
-        return new Address(streetAndNumber, city, state, zip);
+        return new Address((long) randomIndex, streetAndNumber, city, state, zip);
     }
 
     /**
@@ -170,6 +172,7 @@ class MockAddressRepository {
             "465 Bridgeport Avenue, Shelton CT 6484",
             "235 Queen St, Southington CT 6489",
             "150 Barnum Avenue Cutoff, Stratford CT 6614",
+
             "970 Torringford Street, Torrington CT 6790",
             "844 No Colony Road, Wallingford CT 6492",
             "910 Wolcott St, Waterbury CT 6705",

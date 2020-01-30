@@ -33,8 +33,8 @@ public class VehiclesApiApplication {
      * @param endpoint where to communicate for the maps API
      * @return created maps endpoint
      */
-    @Bean(name="maps")
-    public WebClient webClientMaps(@Value("${maps.endpoint}") String endpoint) {
+    @Bean(name="locations")
+    public WebClient webClientLocations(@Value("${locations.endpoint}") String endpoint) {
         return WebClient.create(endpoint);
     }
 

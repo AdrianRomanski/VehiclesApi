@@ -7,17 +7,21 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="eureka-server" />
-        <module name="models-service" />
-        <module name="pricing-service" />
-        <module name="boogle-maps" />
         <module name="vehicles-api" />
+        <module name="pricing-service" />
+        <module name="locations-service" />
+        <module name="models-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="boogle-maps-service.bak" target="11" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="boogle-maps" options="-parameters" />
+      <module name="boogle-maps-service.bak" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
+      <module name="locations-service" options="-parameters" />
       <module name="models-service" options="-parameters" />
       <module name="pricing-service" options="-parameters" />
       <module name="vehicles-api" options="-parameters" />

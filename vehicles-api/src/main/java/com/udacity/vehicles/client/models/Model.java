@@ -1,5 +1,9 @@
 package com.udacity.vehicles.client.models;
 
+/**
+ * Declares a class to store an manufacturer, name, color, modelYear, body,
+ * numberOfDoors, engine and vehicleId
+ */
 public class Model {
 
     private String manufacturer;

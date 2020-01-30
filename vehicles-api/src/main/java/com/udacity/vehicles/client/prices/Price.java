@@ -2,6 +2,9 @@ package com.udacity.vehicles.client.prices;
 
 import java.math.BigDecimal;
 
+/**
+ * Declares a class to store currency, price and vehicleID
+ */
 public class Price {
 
     private String currency;

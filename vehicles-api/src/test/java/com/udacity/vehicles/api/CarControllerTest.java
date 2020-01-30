@@ -6,12 +6,14 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.udacity.vehicles.domain.car.Details;
 import com.udacity.vehicles.domain.car.Location;
 import com.udacity.vehicles.domain.car.Car;
+import com.udacity.vehicles.domain.enums.Condition;
 import com.udacity.vehicles.service.CarService;
 import java.net.URI;
 import java.util.Collections;
@@ -45,6 +47,7 @@ public class CarControllerTest {
 
     @MockBean
     private CarService carService;
+
 
 
     /**
@@ -81,10 +84,14 @@ public class CarControllerTest {
     @Test
     public void listCars() throws Exception {
 
-        mvc.perform(get("/cars").header("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE))
+        mvc.perform(get("/cars").header("Content-Type",MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.*.carList", hasSize(1)))
-                .andExpect(jsonPath("$.*.carList[0].id").value(1));
+                .andExpect(jsonPath("$.*.carList[0].id").value(1))
+                .andExpect(jsonPath("$.*.carList[0].details.model").value("Multipla"))
+                .andExpect(jsonPath("$.*.carList[0].location.state").value("Ohio"))
+                .andExpect(jsonPath("$.*.carList[0].currency").value("US Dollars"))
+                .andExpect(jsonPath("$.*.carList[0].price").value("4200"));
     }
 
     /**
@@ -98,7 +105,11 @@ public class CarControllerTest {
 
         mvc.perform(get("/cars/" + car.getId()).header("Content-Type",MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1));
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.details.model").value("Multipla"))
+                .andExpect(jsonPath("$.location.state").value("Ohio"))
+                .andExpect(jsonPath("$.currency").value("US Dollars"))
+                .andExpect(jsonPath("$.price").value("4200"));
     }
 
     /**
@@ -114,15 +125,69 @@ public class CarControllerTest {
                 MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(status().isNoContent());
     }
 
+
+    @Test
+    public void updateCar() throws Exception {
+
+        Car car = getCar();
+        mvc.perform(get("/cars/" + car.getId()).header("Content-Type",MediaType.APPLICATION_JSON_UTF8_VALUE))
+                 .andExpect(status().isOk())
+                 .andExpect(jsonPath("$.id").value(1))
+                 .andExpect(jsonPath("$.condition").value("NEW"))
+                 .andExpect(jsonPath("$.price").value("4200"))
+                 .andExpect(jsonPath("$.currency").value("US Dollars"))
+                 .andExpect(jsonPath("$.location.state").value("Ohio"));
+
+                 car.setCondition(Condition.USED);
+                 car.setPrice("3800");
+                 car.setCurrency("Euro");
+                 car.getLocation().setState("New York");
+
+                 given(carService.save(any())).willReturn(car);
+
+        mvc.perform(put("/cars/" + car.getId()).header("Content-Type",MediaType.APPLICATION_JSON_UTF8_VALUE)
+                .content(json.write(car).getJson()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.condition").value("USED"))
+                .andExpect(jsonPath("$.price").value("3800"))
+                .andExpect(jsonPath("$.currency").value("Euro"))
+                .andExpect(jsonPath("$.location.state").value("New York"));
+
+
+    }
+
     /**
      * Creates an example Car object for use in testing.
      * @return an example Car object
      */
     private Car getCar() {
+
         Car car = new Car();
+
+        Location location = new Location();
+
+        location.setState("Ohio");
+        location.setAddress("Warm street 22 house no 4");
+        location.setCity("Cleveland");
+        location.setZip("4442");
+        car.setLocation(location);
+
+        Details details = new Details();
+        details.setModelYear(2004);
+        details.setModel("Multipla");
+        details.setColor("Violet");
+        details.setBody("Mini van");
+        details.setEngine("1.6 128hp");
+        details.setNumberOfDoors(5);
+        details.setManufacturer("Fiat");
+        car.setDetails(details);
+
+        car.setCondition(Condition.NEW);
+        car.setCurrency("US Dollars");
+        car.setPrice("4200");
         car.setId(1L);
-        car.setLocation(new Location());
-        car.setDetails(new Details());
+
         return car;
     }
 }

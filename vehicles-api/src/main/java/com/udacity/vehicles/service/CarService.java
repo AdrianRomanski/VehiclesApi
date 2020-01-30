@@ -1,11 +1,12 @@
 package com.udacity.vehicles.service;
 
 
-import com.udacity.vehicles.client.maps.MapsClient;
+import com.udacity.vehicles.client.maps.Address;
+import com.udacity.vehicles.client.maps.LocationsClient;
 import com.udacity.vehicles.client.models.ModelClient;
 import com.udacity.vehicles.client.prices.PriceClient;
-import com.udacity.vehicles.domain.enums.Condition;
 import com.udacity.vehicles.domain.car.Location;
+import com.udacity.vehicles.domain.enums.Condition;
 import com.udacity.vehicles.domain.car.Car;
 import com.udacity.vehicles.domain.car.CarRepository;
 import java.util.List;
@@ -32,17 +33,17 @@ public class CarService {
     private final WebClient maps;
     private final WebClient models;
     private final PriceClient priceClient;
-    private final MapsClient mapsClient;
+    private final LocationsClient locationsClient;
     private final ModelClient modelClient;
 
-    public CarService(CarRepository repository, @Qualifier("pricing") WebClient pricing, @Qualifier("maps") WebClient maps,
-                      @Qualifier("models") WebClient models, PriceClient priceClient, MapsClient mapsClient, ModelClient modelClient) {
+    public CarService(CarRepository repository, @Qualifier("pricing") WebClient pricing, @Qualifier("locations") WebClient locations,
+                      @Qualifier("models") WebClient models, PriceClient priceClient, LocationsClient locationsClient, ModelClient modelClient) {
         this.repository = repository;
         this.pricing = pricing;
-        this.maps = maps;
+        this.maps = locations;
         this.models = models;
         this.priceClient = priceClient;
-        this.mapsClient = mapsClient;
+        this.locationsClient = locationsClient;
         this.modelClient = modelClient;
     }
 
@@ -52,6 +53,12 @@ public class CarService {
 
     /**
      * Gets car information by ID (or throws exception if non-existent)
+     * Gets details information's from ModelClient
+     * @see ModelClient
+     * Gets price information's from PriceClient
+     * @see PriceClient
+     * Gets location information's from LocationsClient
+     * @see LocationsClient
      * @param id the ID number of the car to gather information on
      * @return the requested car's information, including location and price
      */
@@ -61,12 +68,20 @@ public class CarService {
         Optional<Car> optionalCar = repository.findById(id);
         Car car = optionalCar.orElseThrow(CarNotFoundException::new);
 
+
         String price = priceClient.getPrice(id).getPrice().toString();
         car.setPrice(price);
+
         String currency = priceClient.getPrice(id).getCurrency();
         car.setCurrency(currency);
-        Location location = mapsClient.getAddress(car.getLocation());
-        car.setLocation(location);
+        Address address = locationsClient.getAddress(car.getId());
+        System.out.println(address.getAddress());
+
+        car.getLocation().setAddress(address.getAddress());
+        car.getLocation().setCity(address.getCity());
+        car.getLocation().setZip(address.getZip());
+        car.getLocation().setState(address.getState());
+
         car.setCondition(Condition.NEW);
 
         details.setColor(modelClient.getModel(id).getColor());
@@ -90,6 +105,9 @@ public class CarService {
         if (car.getId() != null) {
             return repository.findById(car.getId())
                     .map(carToBeUpdated -> {
+                        carToBeUpdated.setCondition(car.getCondition());
+                        carToBeUpdated.setCurrency(car.getCurrency());
+                        carToBeUpdated.setPrice(car.getPrice());
                         carToBeUpdated.setDetails(car.getDetails());
                         carToBeUpdated.setLocation(car.getLocation());
                         return repository.save(carToBeUpdated);

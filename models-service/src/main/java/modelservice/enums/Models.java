@@ -50,7 +50,7 @@ public enum Models {
          }
      }
 
-    public static Map<Integer, Models> getModels() { return Map.copyOf(models); }
+    public static Map<Integer, Models> getModels() { return models; }
 
     public String getManufacturer() { return manufacturer; }
 

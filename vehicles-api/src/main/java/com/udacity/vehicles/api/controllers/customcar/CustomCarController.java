@@ -16,7 +16,9 @@ import java.util.stream.Collectors;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
-
+/**
+ * Implements a REST-based controller for the Vehicles API.
+ */
 @RestController
 @RequestMapping("/custom-car")
 public class CustomCarController {
@@ -29,6 +31,10 @@ public class CustomCarController {
         this.customCarAssembler = customCarAssembler;
     }
 
+    /**
+     * Creates a list to store any vehicles.
+     * @return list of vehicles
+     */
     @GetMapping
     Resources<Resource<CustomCar>> list() {
         List<Resource<CustomCar>> resources = customCarService.list().stream().map(customCarAssembler::toResource)
@@ -37,6 +43,12 @@ public class CustomCarController {
                 linkTo(methodOn(CustomCarController.class).list()).withSelfRel());
     }
 
+    /**
+     * Gets information of a specific car by ID.
+     * All the information's will be provided by user
+     * @param id the id number of the given vehicle
+     * @return all information for the requested vehicle
+     */
     @GetMapping("/{id}")
     Resource<CustomCar> get(@PathVariable Long id) {
 
@@ -44,6 +56,12 @@ public class CustomCarController {
         return customCarAssembler.toResource(customCar);
     }
 
+    /**
+     * Posts information to create a new vehicle in the system.
+     * @param customCar A new vehicle to add to the system.
+     * @return response that the new vehicle was added to the system
+     * @throws URISyntaxException if the request contains invalid fields or syntax
+     */
     @PostMapping
     ResponseEntity<?> post(@Valid @RequestBody CustomCar customCar) throws URISyntaxException {
 
@@ -52,6 +70,12 @@ public class CustomCarController {
         return ResponseEntity.created(new URI(resource.getId().expand().getHref())).body(resource);
     }
 
+    /**
+     * Updates the information of a vehicle in the system.
+     * @param id The ID number for which to update vehicle information.
+     * @param customCar The updated information about the related vehicle.
+     * @return response that the vehicle was updated in the system
+     */
     @PutMapping("/{id}")
     ResponseEntity<?> put(@PathVariable Long id, @Valid @RequestBody CustomCar customCar) {
 
@@ -61,6 +85,11 @@ public class CustomCarController {
         return ResponseEntity.ok(resource);
     }
 
+    /**
+     * Removes a vehicle from the system.
+     * @param id The ID number of the vehicle to remove.
+     * @return response that the related vehicle is no longer in the system
+     */
     @DeleteMapping("/{id}")
     ResponseEntity<?> delete(@PathVariable Long id) {
 

@@ -31,9 +31,7 @@ public enum Color{
         this.color = color;
     }
 
-    public static Map<Integer, String> getColors() {
-        return Map.copyOf(colors);
-    }
+    public static Map<Integer, String> getColors() { return colors; }
 
     public String getColor() {
         return color;

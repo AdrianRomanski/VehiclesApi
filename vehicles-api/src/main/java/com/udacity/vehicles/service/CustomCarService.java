@@ -28,12 +28,7 @@ public class CustomCarService {
         return repository.findAll();
     }
 
-    /**
-     * Gets car information by ID (or throws exception if non-existent)
-     *
-     * @param id the ID number of the car to gather information on
-     * @return the requested car's information, including location and price
-     */
+
     public CustomCar findById(Long id) {
 
         Optional<CustomCar> optionalCar = repository.findById(id);
@@ -54,11 +49,7 @@ public class CustomCarService {
         return repository.save(customCar);
     }
 
-    /**
-     * Deletes a given car by ID
-     *
-     * @param id the ID number of the car to delete
-     */
+
     public void delete(Long id) {
 
         Optional<CustomCar> optionalCar = repository.findById(id);

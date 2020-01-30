@@ -13,6 +13,7 @@
         <option value="$PROJECT_DIR$/pricing-service/pom.xml" />
         <option value="$PROJECT_DIR$/vehicles-api/pom.xml" />
         <option value="$PROJECT_DIR$/eureka-server/pom.xml" />
+        <option value="$PROJECT_DIR$/maps-service/pom.xml" />
       </list>
     </option>
   </component>

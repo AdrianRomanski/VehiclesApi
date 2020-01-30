@@ -1,6 +1,5 @@
 package com.udacity.vehicles.api;
 
-
 import com.udacity.vehicles.domain.enums.*;
 import com.udacity.vehicles.domain.customcar.CustomCar;
 import com.udacity.vehicles.domain.customcar.CustomCarDetails;
@@ -122,6 +121,7 @@ public class CustomCarControllerTest {
             mvc.perform(delete("/custom-car/" + customCar.getId()).header("Content-Type",
                     MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(status().isNoContent());
         }
+
 
         /**
          * Creates an example CustomCar object for use in testing.
